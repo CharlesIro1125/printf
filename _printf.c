@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	va_list ap;
 
 	if (!format)
-		exit(98);
+		exit(1);
 	va_start(ap, format);
 	while (format[i] != '\0')
 		i++;
@@ -25,15 +25,25 @@ int _printf(const char *format, ...)
 	{
 		if (format[j] == '%')
 		{
-			set1 = 0;
-			set2 = 1;
+			if (set2)
+			{
+				set1 = 1;
+				set2 = 0;
+				count--;
+			}
+			else
+			{
+				set1 = 0;
+				set2 = 1;
+			{
 		}
 		if (set1)
 			_write(format[j]);
 		if (set2)
 		{
-			if ((format[j] == 'c' || format[j] == 's') &&
-((format[j - 2] == '%') != (format[j - 1] == '%')))
+			if (format[j] == ' ')
+				count--;
+			else if ((format[j] == 'c' || format[j] == 's'))
 			{
 				if (format[j] == 'c')
 				{
@@ -59,13 +69,14 @@ int _printf(const char *format, ...)
 					count -= 2;
 					count += k;
 				}
+				set1 = 1;
+				set2 = 0;
 			}
 			else if (format[j] != '%')
-				_write(format[j]);
-			if (j && (format[j] == '%'))
 			{
-				if (format[j - 1] == '%')
-					_write(format[j]);
+				_write(format[j]);
+				set1 = 1;
+				set2 = 0;
 			}
 		}
 		if (j == (len - 1))
