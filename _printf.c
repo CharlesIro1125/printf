@@ -40,7 +40,7 @@ int _printf(const char *format, ...)
 					if (v)
 						_write(v);
 					else
-						exit(98);
+						exit(1);
 				}
 				if (format[j] == 's')
 				{
@@ -48,7 +48,7 @@ int _printf(const char *format, ...)
 
 					str = va_arg(ap, char *);
 					if (!str)
-						exit(98);
+						exit(1);
 					while (str[k] != '\0')
 					{
 						_write(str[k]);
