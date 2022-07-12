@@ -1,14 +1,9 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <stdarg.h>
-#include <unistd.h>
 #include "main.h"
 /**
  * _printf - A printf function.
  * @format: the string format passed
- * to the printf function.
- * description: prints out the string passed with the
- * neccessary conversion specifics.
+ * description: prints out the string passed with the spec
  * Return: 0 for success and other for failure.
  */
 int _printf(const char *format, ...)
@@ -23,15 +18,11 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	while (format[i] != '\0')
 		i++;
-	len = i;
-	count = i - 1;
+	len = i, count = i - 1;
 	for (j = 0; j < i; j++)
 	{
 		if (format[j] == '%')
-		{
-			set1 = 0;
-			set2 = 1;
-		}
+			set1 = 0, set2 = 1;
 		if (set1)
 			_write(format[j]);
 		if (set2)
@@ -44,17 +35,24 @@ int _printf(const char *format, ...)
 					v = va_arg(ap, int);
 					if (v)
 						_write(v);
+					else
+						exit(98);
 				}
 				if (format[j] == 's')
 				{
 					int k = 0;
 
 					str = va_arg(ap, char *);
-					while (str[k] != '\0')
+					if (str)
 					{
-						_write(str[k]);
-						k++;
+						while (str[k] != '\0')
+						{
+							_write(str[k]);
+							k++;
+						}
 					}
+					else
+						exit(98);
 					count--;
 					count += k - 1;
 				}
