@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 	while (format[i] != '\0')
 		i++;
 	len = i;
-	count = i - 1;
+	count = i;
 	for (j = 0; j < i; j++)
 	{
 		if (format[j] == '%')
@@ -42,6 +42,7 @@ int _printf(const char *format, ...)
 						_write(v);
 					else
 						exit(1);
+					count--;
 				}
 				if (format[j] == 's')
 				{
@@ -55,7 +56,7 @@ int _printf(const char *format, ...)
 						_write(str[k]);
 						k++;
 					}
-					count--;
+					count -= 2;
 					count += k;
 				}
 			}
