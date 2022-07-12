@@ -13,7 +13,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, k = 0; j, len, set1 = 1, set2 = 0;
+	int i = 0, count = 0, j, len, set1 = 1, set2 = 0;
 	char *str;
 	unsigned char v;
 	va_list ap;
@@ -24,6 +24,7 @@ int _printf(const char *format, ...)
 	while (format[i] != '\0')
 		i++;
 	len = i;
+	count = i - 1;
 	for (j = 0; j < i; j++)
 	{
 		if (format[j] == '%')
@@ -46,12 +47,15 @@ int _printf(const char *format, ...)
 				}
 				if (format[j] == 's')
 				{
+					int k = 0;
+
 					str = va_arg(ap, char *);
 					while (str[k] != '\0')
 					{
 						_write(str[k]);
 						k++;
 					}
+					count += k;
 				}
 			}
 			else if (format[j] != '%')
@@ -69,5 +73,5 @@ int _printf(const char *format, ...)
 			va_end(ap);
 		}
 	}
-	return (j);
+	return (count);
 }
