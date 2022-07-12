@@ -56,7 +56,7 @@ int _printf(const char *format, ...)
 						k++;
 					}
 					count--;
-					count += k - 1;
+					count += k;
 				}
 			}
 			else if (format[j] != '%')
