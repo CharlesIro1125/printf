@@ -55,7 +55,8 @@ int _printf(const char *format, ...)
 						_write(str[k]);
 						k++;
 					}
-					count += k;
+					count--;
+					count += k - 1;
 				}
 			}
 			else if (format[j] != '%')
@@ -73,5 +74,5 @@ int _printf(const char *format, ...)
 			va_end(ap);
 		}
 	}
-	return (count - 1);
+	return (count);
 }
