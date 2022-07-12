@@ -47,16 +47,13 @@ int _printf(const char *format, ...)
 					int k = 0;
 
 					str = va_arg(ap, char *);
-					if (str)
-					{
-						while (str[k] != '\0')
-						{
-							_write(str[k]);
-							k++;
-						}
-					}
-					else
+					if (!str)
 						exit(98);
+					while (str[k] != '\0')
+					{
+						_write(str[k]);
+						k++;
+					}
 					count--;
 					count += k - 1;
 				}
