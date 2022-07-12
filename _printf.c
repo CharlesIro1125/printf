@@ -13,7 +13,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, j, len, set1 = 1, set2 = 0;
+	int i = 0, k = 0; j, len, set1 = 1, set2 = 0;
 	char *str;
 	unsigned char v;
 	va_list ap;
@@ -46,8 +46,6 @@ int _printf(const char *format, ...)
 				}
 				if (format[j] == 's')
 				{
-					int k = 0;
-
 					str = va_arg(ap, char *);
 					while (str[k] != '\0')
 					{
@@ -71,5 +69,5 @@ int _printf(const char *format, ...)
 			va_end(ap);
 		}
 	}
-	return (j);
+	return (j + k);
 }
