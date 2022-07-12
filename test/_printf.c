@@ -58,8 +58,11 @@ int _printf(const char *format, ...)
 			}
 			else if (format[j] != '%')
 				_write(format[j]);
-			if (j && (format[j] == '%') && (format[j - 1] == '%'))
-				_write(format[j]);
+			if (j && (format[j] == '%'))
+			{
+				if (format[j - 1] == '%')
+					_write(format[j]);
+			}
 		}
 		if (j == (len - 1))
 		{
@@ -68,5 +71,5 @@ int _printf(const char *format, ...)
 			va_end(ap);
 		}
 	}
-	return (0);
+	return (len);
 }
