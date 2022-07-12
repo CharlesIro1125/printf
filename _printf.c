@@ -69,5 +69,5 @@ int _printf(const char *format, ...)
 			va_end(ap);
 		}
 	}
-	return (j + k - 1);
+	return (j);
 }
