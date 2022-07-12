@@ -10,7 +10,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, count = 0, j, len, set1 = 1, set2 = 0;
+	int i = 0, j = 0, len, set = 0;
 	va_list ap;
 	int (*func)(va_list);
 
@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 		exit(-1);
 
 	va_start(ap, format);
-	while (format[i] != '\0')
+	while (format[j] != '\0')
 	{
 		if (format[j] == '%')
 		{
@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 			{
 				set = 0;
 				_write(format[j]);
-				count--;
+				i++;
 			}
 			else
 			{
@@ -39,16 +39,33 @@ int _printf(const char *format, ...)
 		{
 			_write(format[j]);
 			j++;
+			i++;
 			continue;
 		}
 		if(set)
 		{
 			if (format[j] == ' ')
 			{
-				count--;
+				j++;
 				continue;
 			}
 			else
 			{
-				func = g
+				func = get_op_func(format[j]);
+				if (func == NULL)
+					exit(-1);
+				i += func(ap);
+				j++;
+				set = 0;
+				continue;
+			}
+		}
+	}
+	if ((format[j] == '\0') && format[j - 1] != '\n')
+		_write('\n');
+	va_end(ap);
+	return (i);
+}
+
+
 		
