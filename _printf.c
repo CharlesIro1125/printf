@@ -35,7 +35,7 @@ int _printf(const char *format, ...)
 			{
 				set1 = 0;
 				set2 = 1;
-			{
+			}
 		}
 		if (set1)
 			_write(format[j]);
