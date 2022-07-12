@@ -13,7 +13,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, j, len, set1 = 1, set2 = 0;
+	int i = 0, j, len, set1 = 1, set2 = 0;
 	char *str;
 	unsigned char v;
 	va_list ap;
@@ -24,7 +24,7 @@ int _printf(const char *format, ...)
 	while (format[i] != '\0')
 		i++;
 	len = i;
-	for (j = 0; j < 1; j++)
+	for (j = 0; j < i; j++)
 	{
 		if (format[j] == '%')
 		{
