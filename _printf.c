@@ -18,11 +18,15 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	while (format[i] != '\0')
 		i++;
-	len = i, count = i - 1;
+	len = i;
+	count = i - 1;
 	for (j = 0; j < i; j++)
 	{
 		if (format[j] == '%')
-			set1 = 0, set2 = 1;
+		{
+			set1 = 0;
+			set2 = 1;
+		}
 		if (set1)
 			_write(format[j]);
 		if (set2)
