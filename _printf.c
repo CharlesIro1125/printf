@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	int (*func)(va_list);
 
 	if (format == NULL)
-		exit(-1);
+		return (-1);
 
 	va_start(ap, format);
 	while (format[j] != '\0')
@@ -51,7 +51,7 @@ int _printf(const char *format, ...)
 			{
 				func = get_op_func(&format[j]);
 				if (func == NULL)
-					exit(-1);
+					return (-1);
 				i += func(ap);
 				j++;
 				set = 0;

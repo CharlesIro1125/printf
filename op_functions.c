@@ -19,7 +19,7 @@ int spec_c(va_list ap)
 			k++;
 		}
 		else
-			exit(1);
+			return (-1);
 	}
 	return (k);
 }
@@ -46,7 +46,7 @@ int spec_s(va_list ap)
 			}
 		}
 		else
-			exit(1);
+			return (-1);
 	}
 	return (k);
 }
