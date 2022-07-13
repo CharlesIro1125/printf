@@ -47,7 +47,7 @@ int spec_s(va_list *ap)
 				k++;
 			}
 		}
-		else if (str == NULL)
+		else
 		{
 			_write('(');
 			_write('n');
@@ -57,8 +57,6 @@ int spec_s(va_list *ap)
 			_write(')');
 			k = k + 6;
 		}
-		else
-			return (-1);
 	}
 	return (k);
 }
