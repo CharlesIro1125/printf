@@ -1,5 +1,3 @@
-#include <stdarg.h>
-#include <stdlib.h>
 #include "main.h"
 /**
  * _printf - A printf function.
@@ -12,10 +10,10 @@ int _printf(const char *format, ...)
 {
 	int i = 0, j = 0, set = 0;
 	va_list ap;
-	int (*func)(va_list);
+	int (*func)(va_list *);
 
 	if (format == NULL)
-		exit(-1);
+		return (-1);
 
 	va_start(ap, format);
 	while (format[j] && format[j] != '\0')
@@ -41,7 +39,7 @@ int _printf(const char *format, ...)
 			i++;
 			continue;
 		}
-		if(set)
+		if (set)
 		{
 			if (format[j] == ' ')
 			{
@@ -52,19 +50,21 @@ int _printf(const char *format, ...)
 			{
 				func = get_op_func(&format[j]);
 				if (func == NULL)
-					exit(-1);
-				i += func(ap);
+				{
+					_write(format[j]);
+					i++;
+					set = 0;
+				}
+				else
+				{
+					i += func(&ap);
+					set = 0;
+				}
 				j++;
-				set = 0;
 				continue;
 			}
 		}
 	}
-	if ((format[j] == '\0') && format[j - 1] != '\n')
-		_write('\n');
 	va_end(ap);
 	return (i);
 }
-
-
-		

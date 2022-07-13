@@ -5,7 +5,7 @@
  * @s: string pointer
  * Return: pointer to a funtion
  */
-int (*get_op_func(const char *s))(va_list)
+int (*get_op_func(const char *s))(va_list *)
 {
 	int i;
 	op_t ops[] = {

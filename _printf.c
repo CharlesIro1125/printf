@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
 {
 	int i = 0, j = 0, set = 0;
 	va_list ap;
-	int (*func)(va_list);
+	int (*func)(va_list *);
 
 	if (format == NULL)
 		return (-1);
@@ -57,7 +57,7 @@ int _printf(const char *format, ...)
 				}
 				else
 				{
-					i += func(ap);
+					i += func(&ap);
 					set = 0;
 				}
 				j++;
