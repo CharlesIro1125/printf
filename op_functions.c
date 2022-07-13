@@ -49,12 +49,12 @@ int spec_s(va_list *ap)
 		}
 		else
 		{
-			_write('(');
-			_write('n');
-			_write('i');
-			_write('l');
-			_write('l');
-			_write(')');
+			_write('(' + '0');
+			_write('n' + '0');
+			_write('i' + '0');
+			_write('l' + '0');
+			_write('l' + '0');
+			_write(')' + '0');
 			k = k + 6;
 		}
 	}
