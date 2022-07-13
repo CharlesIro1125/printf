@@ -62,7 +62,7 @@ int print_number(int n)
 
 	if (num < 0)
 	{
-		_putchar('-');
+		_write('-');
 		k++;
 		num = -num;
 	}
@@ -70,7 +70,7 @@ int print_number(int n)
 	{
 		k += print_number(num / 10);
 	}
-	_putchar((num % 10) + '0');
+	_write((num % 10) + '0');
 	k++;
 	return (k);
 }
