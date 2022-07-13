@@ -1,90 +1,66 @@
-#include <stdarg.h>
-#include <stdlib.h>
 #include "main.h"
 /**
  * _printf - A printf function.
  * @format: the string format passed
- * description: prints out the string passed with the spec
+ * decription: prints out the string passed
+ * with the spec.
  * Return: 0 for success and other for failure.
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, count = 0, j, len, set1 = 1, set2 = 0;
-	char *str;
-	unsigned char v;
+	int i = 0, j = 0, set = 0;
 	va_list ap;
+	int (*func)(va_list);
 
-	if (!format)
-		exit(1);
+	if (format == NULL)
+		exit(-1);
+
 	va_start(ap, format);
-	while (format[i] != '\0')
-		i++;
-	len = i;
-	count = i;
-	for (j = 0; j < i; j++)
+	while (format[j] != '\0')
 	{
 		if (format[j] == '%')
 		{
-			if (set2)
+			if (set)
 			{
-				set1 = 1;
-				set2 = 0;
-				count--;
+				set = 0;
+				_write(format[j]);
+				i++;
 			}
 			else
 			{
-				set1 = 0;
-				set2 = 1;
+				set = 1;
 			}
+			j++;
+			continue;
 		}
-		if (set1)
+		else if (!set)
+		{
 			_write(format[j]);
-		if (set2)
+			j++;
+			i++;
+			continue;
+		}
+		if (set)
 		{
 			if (format[j] == ' ')
-				count--;
-			else if ((format[j] == 'c' || format[j] == 's'))
 			{
-				if (format[j] == 'c')
-				{
-					v = va_arg(ap, int);
-					if (v)
-						_write(v);
-					else
-						exit(1);
-					count--;
-				}
-				if (format[j] == 's')
-				{
-					int k = 0;
-
-					str = va_arg(ap, char *);
-					if (!str)
-						exit(1);
-					while (str[k] != '\0')
-					{
-						_write(str[k]);
-						k++;
-					}
-					count -= 2;
-					count += k;
-				}
-				set1 = 1;
-				set2 = 0;
+				j++;
+				continue;
 			}
-			else if (format[j] != '%')
+			else
 			{
-				_write(format[j]);
-				set1 = 1;
-				set2 = 0;
+				func = get_op_func(&format[j]);
+				if (func == NULL)
+					exit(-1);
+				i += func(ap);
+				j++;
+				set = 0;
+				continue;
 			}
-		}
-		if (j == (len - 1))
-		{
-			if (format[j] != '\n')
-				_write('\n');
-			va_end(ap);
 		}
 	}
-	return (count);
+	if ((format[j] == '\0') && format[j - 1] != '\n')
+		_write('\n');
+	va_end(ap);
+	return (i);
 }

@@ -34,7 +34,7 @@ int spec_s(va_list ap)
 	int k = 0;
 	char *str;
 
-	if (ap)
+	if(ap)
 	{
 		str = va_arg(ap, char *);
 		if (str != NULL)

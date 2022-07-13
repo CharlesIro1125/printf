@@ -15,7 +15,7 @@ int (*get_op_func(const char *s))(va_list)
 		{"i", spec_i},
 		{NULL, NULL}
 	};
-
+	
 	i = 0;
 	while (ops[i].op != NULL)
 	{
