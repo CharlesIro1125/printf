@@ -22,7 +22,6 @@ int _printf(const char *format, ...)
 		{
 			if (set)
 			{
-				set = 0;
 				_write(format[j]);
 				i++;
 			}
