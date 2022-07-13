@@ -18,6 +18,8 @@ int spec_c(va_list *ap)
 			_write(v);
 			k++;
 		}
+		else if (v == '\0')
+			_write(' ');
 		else
 			return (-1);
 	}
@@ -44,6 +46,16 @@ int spec_s(va_list *ap)
 				_write(str[k]);
 				k++;
 			}
+		}
+		else if (str == NULL)
+		{
+			_write('(');
+			_write('n');
+			_write('i');
+			_write('l');
+			_write('l');
+			_write(')');
+			k = k + 6;
 		}
 		else
 			return (-1);
