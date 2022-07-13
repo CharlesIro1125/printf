@@ -50,16 +50,21 @@ int _printf(const char *format, ...)
 			{
 				func = get_op_func(&format[j]);
 				if (func == NULL)
-					return (-1);
-				i += func(ap);
+				{
+					_write(format[j]);
+					i++;
+					set = 0;
+				}
+				else
+				{
+					i += func(ap);
+					set = 0;
+				}
 				j++;
-				set = 0;
 				continue;
 			}
 		}
 	}
-	if ((format[j] == '\0') && format[j - 1] != '\n')
-		_write('\n');
 	va_end(ap);
 	return (i);
 }
