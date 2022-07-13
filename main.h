@@ -16,6 +16,7 @@ typedef struct ops
 } op_t;
 int spec_s(va_list ap);
 int spec_c(va_list ap);
+int print_number(int n);
 int spec_d(va_list ap);
 int spec_i(va_list ap);
 int _write(char s);

@@ -51,6 +51,30 @@ int spec_s(va_list ap)
 	return (k);
 }
 /**
+ * print_number -print integers using
+ * specification
+ * @n: signed int
+ * Return: int the length of int printed
+ */
+int print_number(int n)
+{
+	int num = n, k = 0;
+
+	if (num < 0)
+	{
+		_putchar('-');
+		k++;
+		num = -num;
+	}
+	if ((num / 10) > 0)
+	{
+		k += print_number(num / 10);
+	}
+	_putchar((num % 10) + '0');
+	k++;
+	return (k);
+}
+/**
  * spec_d -print string using
  * specification
  * @ap: va_list instance
@@ -58,8 +82,13 @@ int spec_s(va_list ap)
  */
 int spec_d(va_list ap)
 {
-	va_arg(ap, char *);
-	return (0);
+	int num, k = 0;
+
+	num = va_arg(ap, int);
+	if (num == '\0' && num == '\n')
+		return (-1);
+	k += print_number(num);
+	return (k);
 }
 /**
  * spec_i -print string using
@@ -69,6 +98,11 @@ int spec_d(va_list ap)
  */
 int spec_i(va_list ap)
 {
-	va_arg(ap, char *);
-	return (0);
+	int num, k = 0;
+
+	num = va_arg(ap, int);
+	if (num == '\0' && num == '\n')
+		return (-1);
+	k += print_number(num);
+	return (k);
 }
