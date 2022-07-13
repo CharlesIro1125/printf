@@ -19,7 +19,10 @@ int spec_c(va_list *ap)
 			k++;
 		}
 		else if (v == '\0')
+		{
 			_write(' ');
+			k++;
+		}
 		else
 			return (-1);
 	}

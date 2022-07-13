@@ -52,8 +52,9 @@ int _printf(const char *format, ...)
 				func = get_op_func(&format[j]);
 				if (func == NULL)
 				{
+					_write('%');
 					_write(format[j]);
-					i++;
+					i = i + 2;
 					set = 0;
 				}
 				else

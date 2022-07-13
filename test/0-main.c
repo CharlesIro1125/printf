@@ -15,8 +15,10 @@ int main(void)
 	 * unsigned int ui;
 	 * void *addr;
 	 */
-	 len = _printf("%s%c%c%c%s%%%s%c", "Loading ", '.', '.', '.', " 99", " Please wait", '\n');
-	 len2 = printf("%s%c%c%c%s%%%s%c", "Loading ", '.', '.', '.', " 99", " Please wait", '\n');
+	 len = _printf("this is");
+	 len2 = printf("this is");
+	 _printf("%K\n");
+	 printf("%K\n");
 	 _printf("Character:[%c]\n", 'H');
 	 printf("Character:[%c]\n", 'H');
 	 _printf("String:[%s]\n", "I am a string !");
