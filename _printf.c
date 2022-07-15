@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	va_start(ap, format);
-	while (format[j] && format[j] != '\0')
+	while (format[j] != '\0')
 	{
 		if (format[j] == '%')
 		{
@@ -52,9 +52,13 @@ int _printf(const char *format, ...)
 				func = get_op_func(&format[j]);
 				if (func == NULL)
 				{
-					_write('%');
+					if (format[j] != '!')
+					{
+						_write('%');
+						i++;
+					}
 					_write(format[j]);
-					i = i + 2;
+					i++;
 					set = 0;
 				}
 				else
@@ -63,7 +67,6 @@ int _printf(const char *format, ...)
 					set = 0;
 				}
 				j++;
-				continue;
 			}
 		}
 	}
