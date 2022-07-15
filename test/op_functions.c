@@ -70,19 +70,43 @@ int spec_s(va_list *ap)
  * @n: signed int
  * Return: int the length of int printed
  */
-int print_number(int n)
+int print_number(unsigned int n)
 {
-	int num = n, k = 0;
+	unsigned int num = n, p = 0;
+	int k = 0;
 
-	if (num < 0)
+	if (num < p)
 	{
 		_write('-');
 		k++;
-		num = -num;
+		num = -1 * num;
 	}
 	if ((num / 10) > 0)
 	{
 		k += print_number(num / 10);
+	}
+	_write((num % 10) + '0');
+	k++;
+	return (k);
+}
+/**
+ * print_number -print integers method
+ * @n: signed int
+ * Return: int the length of int printed
+ */
+int print_number1(int n)
+{
+	int num = n, p = 0;
+	int k = 0;
+	if (num < p)
+	{
+		_write('-');
+		k++;
+		num = -1 * num;
+	}
+	if ((num / 10) > 0)
+	{
+		k += print_number1(num / 10);
 	}
 	_write((num % 10) + '0');
 	k++;
@@ -96,14 +120,15 @@ int print_number(int n)
  */
 int spec_d(va_list *ap)
 {
-	int num, k = 0;
+	int num;
+	int k = 0;
 
 	if (ap)
 	{
 		num = va_arg(*ap, int);
 		if (num == '\0')
 			return (-1);
-		k += print_number(num);
+		k += print_number1(num);
 	}
 	return (k);
 }
@@ -115,14 +140,15 @@ int spec_d(va_list *ap)
  */
 int spec_i(va_list *ap)
 {
-	int num, k = 0;
+	int num;
+	int k = 0;
 
 	if (ap)
 	{
 		num = va_arg(*ap, int);
 		if (num == '\0')
 			return (-1);
-		k += print_number(num);
+		k += print_number1(num);
 	}
 	return (k);
 }
@@ -134,7 +160,8 @@ int spec_i(va_list *ap)
  */
 int spec_u(va_list *ap)
 {
-	int num, k = 0;
+	unsigned int num; 
+	int k = 0;
 	
 	if (ap)
 	{
@@ -154,7 +181,7 @@ int spec_u(va_list *ap)
 int spec_o(va_list *ap)
 {
 	int i, j = 0, sgn = 0;
-	int num;
+	unsigned int num, p = 0;
 	int *ptr;
 
 	ptr = malloc(sizeof(int) * 100);
@@ -166,12 +193,12 @@ int spec_o(va_list *ap)
 	num = va_arg(*ap, int);
 	if (num == '\0')
 		return (-1);
-	if (num < 0)
+	if (num < p)
 	{
 		num *= -1;
 		sgn = 1;
 	}
-	while (num != 0)
+	while (num != p)
 	{
 		i = num % 8;
 		ptr[j] = i;
@@ -204,20 +231,20 @@ int invert(int a)
  * @ap: va_list instance
  * Return: char the number of string
  */
-char hex(int a)
+int hex(int a)
 {
 	if (a == 10)
-		return ('A');
+		return (97);
 	else if (a == 11)
-		return ('B');
+		return (98);
 	else if (a == 12)
-		return ('C');
+		return (99);
 	else if (a == 13)
-		return ('D');
+		return (100);
 	else if (a == 14)
-		return ('E');
+		return (101);
 	else if (a == 15)
-		return ('F');
+		return (102);
 	else
 		return (a);
 }
@@ -290,19 +317,13 @@ int spec_b(va_list *ap)
 int spec_x(va_list *ap)
 {
 	int i, j = 0;
-	int num;
-	int *ptr;
-	
-	ptr = malloc(sizeof(int) * 100);
-	if (ptr == NULL)
-	{
-		free(ptr);
-		return (-1);
-	}
+	unsigned int num, p = 0;
+	int ptr[100];
+
 	num = va_arg(*ap, int);
 	if (num == '\0')
 		return (-1);
-	if (num < 0)
+	if (num < p)
 	{
 		num *= -1;
 	}
@@ -318,7 +339,11 @@ int spec_x(va_list *ap)
 	}
 	--j;
 	for (; j >= 0; j--)
-		_write(ptr[j] + '0');
-	free(ptr);
+	{
+		if (ptr[j] >= 0 && ptr[j] <= 9)
+			_write(ptr[j] + '0');
+		else
+			_write(ptr[j]);
+	}
 	return (0);
 }
