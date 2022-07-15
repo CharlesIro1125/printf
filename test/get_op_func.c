@@ -13,6 +13,10 @@ int (*get_op_func(const char *s))(va_list *)
 		{"s", spec_s},
 		{"d", spec_d},
 		{"i", spec_i},
+		{"o", spec_o},
+		{"x", spec_x},
+		{"b", spec_b},
+		{"u", spec_u},
 		{NULL, NULL}
 	};
 
