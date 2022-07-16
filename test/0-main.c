@@ -69,7 +69,7 @@ int main(void)
 	 printf("%x", 1024);
 	 _printf("%x", -1024);
 	 printf("%x", -1024);
-	 _printf("print%x", 0);
+	 _printf("%x", 0);
 	 printf("%x", 0);
 	 _printf("%x", UINT_MAX);
 	 printf("%x", UINT_MAX);
@@ -77,6 +77,18 @@ int main(void)
 	 printf("There is %x bytes in %x KB\n", 1024, 1);
 	 _printf("%x - %x = %x\n", 2048, 1024, 1024);
 	 printf("%x - %x = %x\n", 2048, 1024, 1024);
+	 _printf("%X", 1024);
+	 printf("%X", 1024);
+	 _printf("%X", -1024);
+	 printf("%X", -1024);
+	 _printf("%X", 0);
+	 printf("%X", 0);
+	 _printf("%X", UINT_MAX);
+	 printf("%X", UINT_MAX);
+	 _printf("There is %X bytes in %X KB\n", 1024, 1);
+	 printf("There is %X bytes in %X KB\n", 1024, 1);
+	 _printf("%X - %X = %X\n", 2048, 1024, 1024);
+	 printf("%X - %X = %X\n", 2048, 1024, 1024);
 	ui = (unsigned int)INT_MAX + 1024;
 	_printf("Length:[%d, %i]\n", len, len);
 	printf("Length:[%d, %i]\n", len2, len2);
@@ -86,7 +98,9 @@ int main(void)
 	printf("Unsigned:[%u]\n", ui);
 	_printf("Unsigned octal:[%o]\n", ui);
 	printf("Unsigned octal:[%o]\n", ui);
-	_printf("Unsigned hexadecimal:[%x, %x]\n", 450, 450);
+	_printf("Unsigned hexadecimal:[%x, %X]\n", 450, 450);
+	printf("Unsigned hexadecimal:[%x, %X]\n", 450, 450);
+	_printf("Unsigned hexadecimal:[%x, %X]\n", 450, 450);
 	printf("Unsigned hexadecimal:[%x, %X]\n", 450, 450);
 	return (0);
 }

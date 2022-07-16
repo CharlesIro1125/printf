@@ -54,7 +54,7 @@ int spec_s(va_list *ap)
 		{
 			_write('(');
 			_write('n');
-			_write('i');
+			_write('u');
 			_write('l');
 			_write('l');
 			_write(')');
@@ -125,7 +125,7 @@ int spec_d(va_list *ap)
 		if (num == '\0')
 		{
 			_write('0');
-			return (-1);
+			return (0);
 		}
 		if (num < 0)
 		{
