@@ -1,5 +1,27 @@
 #include "main.h"
 /**
+ * hex1 - gets the hex letter
+ * @a: int
+ * Return: char the number of string
+ */
+int hex1(int a)
+{
+	if (a == 10)
+		return (65);
+	else if (a == 11)
+		return (66);
+	else if (a == 12)
+		return (67);
+	else if (a == 13)
+		return (68);
+	else if (a == 14)
+		return (69);
+	else if (a == 15)
+		return (70);
+	else
+		return (a);
+}
+/**
  * spec_i -print int using
  * specification
  * @ap: va_list instance

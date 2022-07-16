@@ -50,6 +50,7 @@ int spec_b(va_list *ap)
 	if (num == '\0')
 	{
 		_write('0');
+		return (0);
 	}
 	if (num < 0)
 	{
@@ -105,6 +106,7 @@ int spec_x(va_list *ap)
 	if (num == '\0')
 	{
 		_write('0');
+		return (0);
 	}
 	if (num < p)
 	{
@@ -146,6 +148,7 @@ int spec_X(va_list *ap)
 	if (num == '\0')
 	{
 		_write('0');
+		return (0);
 	}
 	if (num < p)
 	{
@@ -155,7 +158,7 @@ int spec_X(va_list *ap)
 	{
 		i = num % 16;
 		if (i > 9)
-			ptr[j] = hex(i);
+			ptr[j] = hex1(i);
 		else
 			ptr[j] = i;
 		num = num / 16;

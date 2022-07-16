@@ -28,6 +28,7 @@ int hex(int a);
 int spec_x(va_list *ap);
 int spec_u(va_list *ap);
 int _write(char s);
+int hex1(int a);
 int (*get_op_func(const char *s))(va_list *);
 int _printf(const char *format, ...);
 #endif
