@@ -16,7 +16,7 @@ int spec_i(va_list *ap)
 		if (num == '\0')
 		{
 			_write('0');
-			return (-1);
+			return (0);
 		}
 		if (num < 0)
 		{
@@ -45,7 +45,7 @@ int spec_u(va_list *ap)
 		if (num == '\0')
 		{
 			_write('0');
-			return (-1);
+			return (0);
 		}
 		k += print_number(num);
 	}
@@ -73,7 +73,6 @@ int spec_o(va_list *ap)
 	if (num == '\0')
 	{
 		_write('0');
-		return (-1);
 	}
 	if (num < p)
 	{

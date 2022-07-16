@@ -52,11 +52,15 @@ int _printf(const char *format, ...)
 				func = get_op_func(&format[j]);
 				if (func == NULL)
 				{
+					/**
 					if (format[j] != '!')
 					{
 						_write('%');
 						i++;
 					}
+					*/
+					_write('%');
+					i++;
 					_write(format[j]);
 					i++;
 					set = 0;

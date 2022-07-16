@@ -50,7 +50,6 @@ int spec_b(va_list *ap)
 	if (num == '\0')
 	{
 		_write('0');
-		return (-1);
 	}
 	if (num < 0)
 	{
@@ -106,7 +105,6 @@ int spec_x(va_list *ap)
 	if (num == '\0')
 	{
 		_write('0');
-		return (-1);
 	}
 	if (num < p)
 	{
@@ -148,7 +146,6 @@ int spec_X(va_list *ap)
 	if (num == '\0')
 	{
 		_write('0');
-		return (-1);
 	}
 	if (num < p)
 	{
