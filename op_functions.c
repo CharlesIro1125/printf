@@ -44,17 +44,14 @@ int spec_b(va_list *ap)
 {
 	int i, j = 0, sgn = 0;
 	int num;
-	int *ptr;
+	int ptr[300];
 
-	ptr = malloc(sizeof(int) * 100);
-	if (ptr == NULL)
-	{
-		free(ptr);
-		return (-1);
-	}
 	num = va_arg(*ap, int);
 	if (num == '\0')
+	{
+		_write('0');
 		return (-1);
+	}
 	if (num < 0)
 	{
 		num *= -1;
@@ -68,13 +65,13 @@ int spec_b(va_list *ap)
 		j++;
 	}
 	j--;
-	do {
-		_write(ptr[j] + '0');
-		j--;
-	} while (ptr[j + 1]  == 0);
-	if (j > -1)
+	if (sgn)
 	{
-		if (sgn)
+		do {
+			_write(ptr[j] + '0');
+			j--;
+		} while (ptr[j + 1]  == 0);
+		if (j > -1)
 		{
 			while (j >= 0)
 			{
@@ -82,16 +79,15 @@ int spec_b(va_list *ap)
 				j--;
 			}
 		}
-		else
+	}
+	else
+	{
+		while (j >= 0)
 		{
-			while (j >= 0)
-			{
-				_write(ptr[j] + '0');
-				j--;
-			}
+			_write(ptr[j] + '0');
+			j--;
 		}
 	}
-	free(ptr);
 	return (0);
 }
 /**
@@ -104,11 +100,56 @@ int spec_x(va_list *ap)
 {
 	int i, j = 0;
 	unsigned int num, p = 0;
-	int ptr[100];
+	int ptr[300];
 
 	num = va_arg(*ap, int);
 	if (num == '\0')
+	{
+		_write('0');
 		return (-1);
+	}
+	if (num < p)
+	{
+		num *= -1;
+	}
+	while (num != 0)
+	{
+		i = num % 16;
+		if (i > 9)
+			ptr[j] = hex(i);
+		else
+			ptr[j] = i;
+		num = num / 16;
+		j++;
+	}
+	--j;
+	for (; j >= 0; j--)
+	{
+		if (ptr[j] >= 0 && ptr[j] <= 9)
+			_write(ptr[j] + '0');
+		else
+			_write(ptr[j]);
+	}
+	return (0);
+}
+/**
+ * spec_X -print hexadecimal using
+ * specification
+ * @ap: va_list instance
+ * Return: int the number of string
+ */
+int spec_X(va_list *ap)
+{
+	int i, j = 0;
+	unsigned int num, p = 0;
+	int ptr[300];
+
+	num = va_arg(*ap, int);
+	if (num == '\0')
+	{
+		_write('0');
+		return (-1);
+	}
 	if (num < p)
 	{
 		num *= -1;

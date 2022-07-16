@@ -17,6 +17,7 @@ int (*get_op_func(const char *s))(va_list *)
 		{"x", spec_x},
 		{"b", spec_b},
 		{"u", spec_u},
+		{"X", spec_X},
 		{NULL, NULL}
 	};
 
